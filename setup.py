@@ -8,7 +8,7 @@ setup(
     name="febraban",
     packages=find_packages(),
     include_package_data=True,
-    description="A library to generate files in FEBRABAN formats",
+    description="A library to generate remittance files in FEBRABAN formats",
     long_description=README,
     license="MIT License",
     url='https://github.com/garage-geek/febraban-python.git',

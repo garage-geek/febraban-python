@@ -1,6 +1,6 @@
 from ....characterType import numeric, alphaNumeric
 from ....row import Row
-from gespag.contas.cnab240.libs.enums import RegistrationType
+from ....libs.enums import RegistrationType
 
 
 class SegmentB:

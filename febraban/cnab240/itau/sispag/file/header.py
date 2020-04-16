@@ -1,6 +1,6 @@
 from ....row import Row
 from ....characterType import numeric, alphaNumeric
-from gespag.contas.cnab240.libs.enums import *
+from ....libs.enums import *
 
 
 class Header:

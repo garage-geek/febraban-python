@@ -1,4 +1,3 @@
-# coding: utf-8
 # Pagamento de Contas de Concessionárias e Tributos com código de barras # Página 28
 from ....row import Row
 from ....characterType import numeric, alphaNumeric
