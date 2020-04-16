@@ -1,4 +1,3 @@
-# coding: utf-8
 from ....row import Row
 from ....characterType import numeric, alphaNumeric
 
@@ -11,12 +10,12 @@ class SegmentJ:
 
     def defaultValues(self):
         structs = [
-            (  3,   7,  4,      numeric,   "1"),         # Lote do Registro
-            (  7,   8,  1,      numeric,   "3"),         # Tipo de Registro
-            ( 13,  14,  1, alphaNumeric,   "J"),         # Código de Segmento
-            ( 14,  17,  3,      numeric,   "0"),         # Tipo de Movimento
-            (114, 144, 30,      numeric,   "0"),
-            (167, 182, 15,      numeric,   "0"),
+            (3, 7, 4, numeric, "1"),            # Lote do Registro
+            (7, 8, 1, numeric, "3"),            # Tipo de Registro
+            (13, 14, 1, alphaNumeric, "J"),     # Código de Segmento
+            (14, 17, 3, numeric, "0"),          # Tipo de Movimento
+            (114, 144, 30, numeric, "0"),
+            (167, 182, 15, numeric, "0"),
         ]
         self.content = Row.setStructs(structs=structs, content=self.content)
 
@@ -28,15 +27,20 @@ class SegmentJ:
 
     def setBarCode(self, barCode):
         structs = [
-            ( 17,  20,  3, numeric, barCode.bankId),
-            ( 20,  21,  1, numeric, barCode.currency),
-            ( 21,  22,  1, numeric, barCode.dac),
-            ( 22,  26,  4, numeric, barCode.dueFactor),
-            ( 26,  36, 10, numeric, barCode.amount),
-            ( 36,  61, 25, numeric, barCode.freeField),
-            ( 91,  99,  8, numeric, barCode.dueDate.strftime("%d%m%Y")),    # Data de Vencimento
-            ( 99, 114, 15, numeric, barCode.amount),                        # Valor Nominal do Título
-            (152, 167, 15, numeric, barCode.amount),                        # Valor do Pagamento
+            (17,  61,  44, numeric, barCode)
+        ]
+        self.content = Row.setStructs(structs=structs, content=self.content)
+
+    def setDueDate(self, dueDate):
+        structs = [
+            (91, 99, 8, numeric, dueDate.strftime("%d%m%Y")),  # Data de Vencimento
+        ]
+        self.content = Row.setStructs(structs=structs, content=self.content)
+
+    def setAmountInCents(self, amount):
+        structs = [
+            (99, 114, 15, numeric, amount),     # Valor Nominal do Título   - 11.3J
+            (152, 167, 15, numeric, amount),    # Valor do Pagamento        - 15.3J
         ]
         self.content = Row.setStructs(structs=structs, content=self.content)
 
@@ -48,7 +52,7 @@ class SegmentJ:
 
     def setIdentifier(self, identifier):
         structs = [
-            (182, 202, 20, alphaNumeric, identifier),
+            (182, 202, 20, alphaNumeric, identifier),       # 17.3J
         ]
         self.content = Row.setStructs(structs=structs, content=self.content)
 

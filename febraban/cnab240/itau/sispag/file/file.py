@@ -18,10 +18,11 @@ class File:
         self.amount = 0
         self.index = 1
 
-    def add(self, register):
+    def add(self, register, sum_amount=True):
         register.setPositionInLot(index=self.index)
         self.registers.append(register)
-        self.amount += register.amountInCents()
+        if sum_amount:
+            self.amount += register.amountInCents()
         self.index += 1
 
     def setHeaderLotType(self, kind="20", method="41"):
@@ -61,6 +62,7 @@ class File:
     def setSender(self, user):
         self.header.setSender(user)
         self.header.setSenderBank(user.bank)
+        self.header.setFileSequential(user.file_id)
         self.headerLot.setSender(user)
         self.headerLot.setSenderBank(user.bank)
         self.headerLot.setSenderAddress(user.address)
@@ -71,6 +73,7 @@ class File:
         file = FileUtils.create(name=fileName, path=path)
         file.write(self.toString(currentDatetime or datetime.now()) if not content else content)
         file.close()
+        return file.name
 
     def _count(self, cls):
         return len([register for register in self.registers if isinstance(register, cls)])

@@ -11,9 +11,9 @@ setup(
     description="A library to generate files in FEBRABAN formats",
     long_description=README,
     license="MIT License",
-    url='https://github.com/starkbank/febraban.git',
-    author="Stark Bank",
-    author_email="developers@starkbank.com",
+    url='https://github.com/garage-geek/febraban-python.git',
+    author="Garage Geek",
+    author_email="contato@garagegeek.com",
     keywords=["febraban", "cnab", "cnab 240", "cnab240", "febraban240", "transfer", "billing", "bank"],
     version="0.2.12"
 )

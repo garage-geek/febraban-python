@@ -1,12 +1,14 @@
+from gespag.contas.cnab240.libs.cleanData import clean_data_return_only_number
 
 
 class User:
 
-    def __init__(self, name, identifier, bank=None, address=None):
+    def __init__(self, name, identifier, bank=None, address=None, file_id=None):
         self.name = name
-        self.identifier = identifier
+        self.identifier = clean_data_return_only_number(identifier)
         self.bank = bank
         self.address = address
+        self.file_id = file_id
 
 
 class UserBank:
@@ -27,4 +29,4 @@ class UserAddress:
         self.district = district
         self.city = city
         self.stateCode = stateCode
-        self.zipCode = zipCode
+        self.zipCode = clean_data_return_only_number(zipCode)

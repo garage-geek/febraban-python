@@ -1,5 +1,3 @@
-# coding: utf-8
-
 from ....characterType import numeric, alphaNumeric
 from ....row import Row
 
@@ -15,36 +13,36 @@ class SegmentA:
 
     def defaultValues(self):
         structs = [
-            (  3,   7,  4,      numeric, "1"),
-            (  7,   8,  1,      numeric, "3"),
-            ( 13,  14,  1, alphaNumeric, "A"),
-            ( 14,  20,  6,      numeric, "0"),
-            (101, 104,  3, alphaNumeric, "REA"),
-            (104, 119, 15,      numeric, "0"),
-            (154, 177, 23,      numeric, "0"),
-            (197, 203,  6,      numeric, "0"),
+            (3, 7, 4, numeric, "1"),
+            (7, 8, 1, numeric, "3"),
+            (13, 14, 1, alphaNumeric, "A"),
+            (14, 20, 6, numeric, "0"),
+            (101, 104, 3, alphaNumeric, "REA"),
+            (104, 119, 15, numeric, "0"),
+            (154, 177, 23, numeric, "0"),
+            (197, 203, 6, numeric, "0"),
         ]
         self.content = Row.setStructs(structs=structs, content=self.content)
 
     def setSenderBank(self, bank):
         structs = [
-            (0,   3,  3, numeric, bank.bankId),              # Código do banco debitado
+            (0, 3, 3, numeric, bank.bankId),              # Código do banco debitado
         ]
         self.content = Row.setStructs(structs=structs, content=self.content)
 
     def setReceiver(self, user):
         structs = [
-            ( 43,  73, 30,  alphaNumeric, user.name),        # Nome FAvorecido
-            (203, 217, 14,       numeric, user.identifier),  # CPF/CNPJ Favorecido
+            (43, 73, 30, alphaNumeric, user.name),          # Nome FAvorecido
+            (203, 217, 14, numeric, user.identifier),       # CPF/CNPJ Favorecido
         ]
         self.content = Row.setStructs(structs=structs, content=self.content)
 
     def setReceiverBank(self, bank):
         structs = [
-            (20, 23,  3,  numeric, bank.bankId),             # Código do banco do Favorecido
-            (23, 28,  5,  numeric, bank.branchCode),         # Agencia Favorecido
-            (29, 41, 12,  numeric, bank.accountNumber),      # Conta Favorecido
-            (42, 43,  1,  numeric, bank.accountVerifier),    # DAC FAvorecido
+            (20, 23, 3, numeric, bank.bankId),              # Código do banco do Favorecido
+            (23, 28, 5, numeric, bank.branchCode),          # Agencia Favorecido
+            (29, 41, 12, numeric, bank.accountNumber),      # Conta Favorecido
+            (42, 43, 1, numeric, bank.accountVerifier),     # DAC FAvorecido
         ]
         self.content = Row.setStructs(structs=structs, content=self.content)
 
