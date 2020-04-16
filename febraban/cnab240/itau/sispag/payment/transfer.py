@@ -1,6 +1,6 @@
 from .segmentA import SegmentA
 from .segmentB import SegmentB
-from gespag.contas.cnab240.libs.cleanData import clean_data_return_only_number
+from ....libs.cleanData import clean_data_return_only_number
 
 
 class Transfer:
