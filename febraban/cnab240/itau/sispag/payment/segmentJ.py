@@ -37,6 +37,9 @@ class SegmentJ:
         ]
         self.content = Row.setStructs(structs=structs, content=self.content)
 
+    def amountInCents(self):
+        return int(self.content[152:167])
+
     def setAmountInCents(self, amount):
         structs = [
             (99, 114, 15, numeric, amount),     # Valor Nominal do Título   - 11.3J

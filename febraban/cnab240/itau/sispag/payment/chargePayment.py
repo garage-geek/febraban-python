@@ -16,6 +16,9 @@ class ChargePayment:
             self.segmentJ52.content,
         ))
 
+    def amountInCents(self):
+        return self.segmentJ.amountInCents()
+
     def setSender(self, user):
         """Sets the sender for the payment. The sender represents a user, its bank and its address."""
         self.segmentJ.setSenderBank(user.bank)
