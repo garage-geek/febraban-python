@@ -61,7 +61,7 @@ class File:
         for lot in self.lots:
             registersToString = "\r\n".join([register.toString() for register in lot.registers])
 
-            lots_to_string = "%s\r\n%s\r\n%s\r\n" % (
+            lots_to_string += "%s\r\n%s\r\n%s\r\n" % (
                 lot.headerLot.content,
                 registersToString,
                 lot.trailerLot.content
