@@ -1,5 +1,6 @@
 from .segmentJ import SegmentJ
 from .segmentJ52 import SegmentJ52
+from ....libs.cleanData import clean_data_return_only_number
 
 
 class ChargePayment:
@@ -14,9 +15,6 @@ class ChargePayment:
             self.segmentJ.content,
             self.segmentJ52.content,
         ))
-
-    def amountInCents(self):
-        return self.amount
 
     def setSender(self, user):
         """Sets the sender for the payment. The sender represents a user, its bank and its address."""
@@ -36,9 +34,15 @@ class ChargePayment:
         """Sets the payment date to be sent to the bank."""
         self.segmentJ.setScheduleDate(paymentDate)
 
+    def setDueDate(self, paymentDate):
+        """Sets the payment date to be sent to the bank."""
+        self.segmentJ.setDueDate(paymentDate)
+
     def setBarCode(self, barCode):
         self.segmentJ.setBarCode(barCode)
-        self.amount = int(barCode.amount)
+
+    def setAmountInCents(self, value):
+        self.segmentJ.setAmountInCents(clean_data_return_only_number(value))
 
     def setPositionInLot(self, index):
         index = 2 * index - 1
