@@ -49,13 +49,13 @@ class SegmentO:
 
     def setDueDate(self, dueDate):
         structs = [
-            (91, 99, 8, numeric, dueDate),
+            (91, 99, 8, numeric, dueDate.strftime("%d%m%Y")),   # 10.30
         ]
         self.content = Row.setStructs(structs=structs, content=self.content)
 
     def setAmountInCents(self, amount):
         structs = [
-            (107, 122, 15, numeric, amount),     # Valor Nominal do Título   - 11.3J
+            (107, 122, 15, numeric, amount),     # 12.30
         ]
         self.content = Row.setStructs(structs=structs, content=self.content)
 
