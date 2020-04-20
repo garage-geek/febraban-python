@@ -25,7 +25,7 @@ class Lot:
                          method=HeaderLoteEntryWay.TED_OUTRA_TITULARIDADE,
                          segment=Segment.PAGAMENTO_CREDITO_CONTA_TED_DOC_CHEQUE
                          ):
-        self.headerLot.setInfo(kind, method)
+        self.headerLot.setInfo(kind, method, segment)
         self.segment = segment
 
     def setSender(self, user):
