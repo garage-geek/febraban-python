@@ -21,8 +21,9 @@ class ProviderPayment:
     def amountInCents(self):
         return self.segmentO.setAmountInCents()
 
-    def setSenderBank(self, user):
+    def setSender(self, user):
         """Sets the sender for the payment. The sender represents a user, its bank and its address."""
+        self.segmentO.setSender(user)
         self.segmentO.setSenderBank(user.bank)
 
     def setReceiverTaxId(self, receiverTaxId):
