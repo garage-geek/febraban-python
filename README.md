@@ -13,6 +13,9 @@ Projeto para criar arquivos de remessa e ler arquivos de retorno do padrão CNAB
 
 [Itaú Manual](https://download.itau.com.br/bankline/SISPAG_CNAB.pd)
 
+[Badesco](https://banco.bradesco/assets/pessoajuridica/pdf/4008-523-0687-layout-multipag.pdf)
+
+[Santander](https://cms.santander.com.br/sites/WPS/documentos/arq-layout-de-arquivos-2/17-10-26_172236_149-382-cobranca+layout+cnab+240+febraban+puro+versao+setembro+2017.pdf)
 
 https://github.com/arannasousa/pyfebraban
 

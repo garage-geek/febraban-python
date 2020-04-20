@@ -1,6 +1,6 @@
 from ....row import Row
 from ....characterType import numeric, alphaNumeric
-from ....libs.enums import RegistrationType
+from ....libs.enums import RegistrationType, Segment
 
 
 class HeaderLot:
@@ -14,7 +14,6 @@ class HeaderLot:
             (3, 7, 4, numeric, "1"),            # 02.1
             (7, 8, 1, numeric, "1"),            # 03.1
             (8, 9, 1, alphaNumeric, "C"),       # 04.1
-            (13, 16, 3, numeric, "040"),        # 07.1
         ]
         self.content = Row.setStructs(structs=structs, content=self.content)
 
@@ -29,10 +28,11 @@ class HeaderLot:
 
     def setSenderBank(self, bank):
         structs = [
-            (0,   3,  3, numeric, bank.bankId),
-            (52,  57,  5, numeric, bank.branchCode),
-            (58,  70, 12, numeric, bank.accountNumber),
-            (71,  72,  1, numeric, bank.accountVerifier),
+            (0, 3, 3, numeric, bank.bankId),
+            (32, 52, 20, alphaNumeric, bank.code),
+            (52, 57, 5, numeric, bank.branchCode),
+            (58, 70, 12, numeric, bank.accountNumber),
+            (71, 72, 1, numeric, bank.accountVerifier),
         ]
         self.content = Row.setStructs(structs=structs, content=self.content)
 
@@ -51,9 +51,19 @@ class HeaderLot:
         ]
         self.content = Row.setStructs(structs=structs, content=self.content)
 
-    def setInfo(self, kind, method):
+    def setInfo(self, kind, method, segment):
+
+        lot_layout = "046"
+        if segment == Segment.PAGAMENTO_CREDITO_CONTA_TED_DOC_CHEQUE:
+            lot_layout = "046"
+        elif segment == Segment.PAGAMENTO_TITULOS_DE_COBRANCA:
+            lot_layout = "040"
+        elif segment == Segment.PAGAMENTO_CONTAS_TRIBUTOS_COM_CODIGO_DE_BARRAS:
+            lot_layout = "012"
+
         structs = [
             (9, 11, 2, numeric, kind),
-            (11, 13, 2, numeric, method)
+            (11, 13, 2, numeric, method),
+            (13, 16, 3, numeric, lot_layout)        # 07.1 /
         ]
         self.content = Row.setStructs(structs=structs, content=self.content)

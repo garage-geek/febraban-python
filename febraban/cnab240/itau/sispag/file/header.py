@@ -38,6 +38,7 @@ class Header:
     def setSenderBank(self, bank):
         structs = [
             (0, 3, 3, numeric, bank.bankId),
+            (32, 52, 20, alphaNumeric, bank.code),
             (52, 57, 5, numeric, bank.branchCode),
             (58, 70, 12, numeric, bank.accountNumber),
             (71, 72, 1, numeric, bank.accountVerifier),

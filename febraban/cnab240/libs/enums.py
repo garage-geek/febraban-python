@@ -4,6 +4,18 @@ class RegistrationType:
     PESSOA_JURIDICA = "2"
 
 
+class Segment:
+    "Pagamento Através de Crédito em Conta, Cheque,OP, DOC, TED ou Pagamento com Autenticação"
+    PAGAMENTO_CREDITO_CONTA_TED_DOC_CHEQUE = "A"
+
+    "Pagamento de Títulos de Cobrança"
+    PAGAMENTO_TITULOS_DE_COBRANCA = "J"
+    PAGAMENTO_TITULOS_DE_COBRANCA_J52 = "J52"
+
+    "Pagamento de Contas e Tributos com Código de Barras (Obrigatório - Remessa / Retorno)"
+    PAGAMENTO_CONTAS_TRIBUTOS_COM_CODIGO_DE_BARRAS = "O"
+
+
 class ServiceType:      # P005
 
     CREDITO_EM_CONTA = "01"
