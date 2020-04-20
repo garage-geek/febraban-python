@@ -53,6 +53,9 @@ class SegmentO:
         ]
         self.content = Row.setStructs(structs=structs, content=self.content)
 
+    def amountInCents(self):
+        return int(self.content[107:122])
+
     def setAmountInCents(self, amount):
         structs = [
             (107, 122, 15, numeric, amount),     # 12.30
