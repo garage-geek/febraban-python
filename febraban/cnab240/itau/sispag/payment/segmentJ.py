@@ -30,7 +30,7 @@ class SegmentJ:
             difference_caracters = 47 - len(barCode)
             barCode = barCode + ('0' * difference_caracters)
 
-        barCode = barCode[0:4] + barCode[32:46] + barCode[4:10] + barCode[10:21] + barCode[21:32]
+        barCode = barCode[0:4] + barCode[33:48] + barCode[5:10] + barCode[11:21] + barCode[22:32]
 
         structs = [
             (17,  61,  44, numeric, barCode)
