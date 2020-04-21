@@ -26,6 +26,12 @@ class SegmentJ:
         self.content = Row.setStructs(structs=structs, content=self.content)
 
     def setBarCode(self, barCode):
+        if barCode.length < 47:
+            difference_caracters = 47 - barCode.length
+            barCode = barCode + ('0' * difference_caracters)
+
+        barCode = barCode[0:4] + barCode[32:15] + barCode[4:5] + barCode[10:10] + barCode[21:10]
+
         structs = [
             (17,  61,  44, numeric, barCode)
         ]

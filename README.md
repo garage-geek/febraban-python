@@ -17,6 +17,8 @@ Projeto para criar arquivos de remessa e ler arquivos de retorno do padrão CNAB
 
 [Santander](https://cms.santander.com.br/sites/WPS/documentos/arq-layout-de-arquivos-2/17-10-26_172236_149-382-cobranca+layout+cnab+240+febraban+puro+versao+setembro+2017.pdf)
 
+http://suporte.quarta.com.br/LayOuts/Bancos/19-HSBC(febraban).pdf
+
 https://github.com/arannasousa/pyfebraban
 
 https://github.com/KeeperFormaturas/cnab240
