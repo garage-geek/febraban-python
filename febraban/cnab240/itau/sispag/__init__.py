@@ -1,4 +1,4 @@
-from .result.parser import PaymentParser
+from .result.parser import PaymentParser, PaymentFileHeader
 from .payment.transfer import Transfer, TransferSegmentB
 from .payment.chargePayment import ChargePayment
 from .payment.providerPayment import ProviderPayment
