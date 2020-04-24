@@ -17,9 +17,32 @@ class PaymentType:
     barCodePayment = "bar-code-payment"
 
 
+class PaymentFileHeader:
+
+    def __init__(self):
+        self.bankId = ""
+        self.identifier = ""
+        self.lot = ""               # 19.0
+        self.code = ""              # codigo convenio com banco  - 07.0
+        self.branch_number = ""
+        self.account_number = ""
+        self.account_verifier = ""
+
+    def parseHeader(self, line):
+
+        self.bankId = int(line[0:3].strip())
+        self.lot = int(line[157:163].strip())
+        self.identifier = int(line[18:32].strip())
+        self.code = line[32:52].strip()
+        self.branch_number = int(line[52:57].strip())
+        self.account_number = int(line[58:70].strip())
+        self.account_verifier = int(line[57:58].strip())
+
+
 class PaymentResponse:
 
-    def __init__(self, identifier=None, occurrences=None, content=None, authentication=None, amountInCents=None, paymentType=None):
+    def __init__(self, identifier=None, occurrences=None, content=None, authentication=None,
+                 amountInCents=None, paymentType=None):
         self.identifier = identifier
         self.occurrences = occurrences
         self.content = content or []

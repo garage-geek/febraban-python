@@ -1,5 +1,3 @@
-# coding: utf-8
-
 occurrences = {
     "00": "PAGAMENTO EFETUADO",
     "AE": "DATA DE PAGAMENTO ALTERADA",
