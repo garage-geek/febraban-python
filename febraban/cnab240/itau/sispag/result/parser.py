@@ -36,7 +36,7 @@ class PaymentFileHeader:
         self.code = line[32:52].strip()
         self.branch_number = int(line[52:57].strip())
         self.account_number = int(line[58:70].strip())
-        self.account_verifier = int(line[57:58].strip())
+        self.account_verifier = line[70:71].strip()
 
 
 class PaymentResponse:
