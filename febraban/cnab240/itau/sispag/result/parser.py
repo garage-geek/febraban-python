@@ -9,7 +9,7 @@ class PaymentResponseStatus:
     unknown = "unknown"
 
 
-class PaymentType:
+class payment_type:
 
     transfer = "transfer"
     chargePayment = "charge-payment"
@@ -42,13 +42,13 @@ class PaymentFileHeader:
 class PaymentResponse:
 
     def __init__(self, identifier=None, occurrences=None, content=None, authentication=None,
-                 amountInCents=None, paymentType=None):
+                 amount_in_cents=None, payment_type=None):
         self.identifier = identifier
         self.occurrences = occurrences
         self.content = content or []
         self.authentication = authentication
-        self.amountInCents = amountInCents
-        self.type = paymentType
+        self.amount_in_cents = amount_in_cents
+        self.type = payment_type
 
     def occurrencesText(self):
         return [occurrences[occurrenceId] for occurrenceId in self.occurrences]
@@ -86,6 +86,7 @@ class PaymentParser:
     def parseLines(cls, lines):
         result = []
         currentResponse = None
+        
         for line in lines:
             if line[7] in ["0", "1", "9"]:
                 continue
@@ -99,20 +100,20 @@ class PaymentParser:
                 currentResponse.content.append(line)
                 currentResponse.identifier = cls._getIdentifierSegmentA(line)
                 currentResponse.occurrences = cls._getOccurrences(line)
-                currentResponse.amountInCents = cls._getAmountSegmentA(line)
-                currentResponse.type = PaymentType.transfer
+                currentResponse.amount_in_cents = cls._getAmountSegmentA(line)
+                currentResponse.type = payment_type.transfer
             elif line[7] == "3" and line[13] == "J":
                 currentResponse.content.append(line)
                 currentResponse.identifier = cls._getIdentifierSegmentJ(line)
                 currentResponse.occurrences = cls._getOccurrences(line)
-                currentResponse.amountInCents = cls._getAmountSegmentJ(line)
-                currentResponse.type = PaymentType.chargePayment
+                currentResponse.amount_in_cents = cls._getAmountSegmentJ(line)
+                currentResponse.type = payment_type.chargePayment
             elif line[7] == "3" and line[13] == "O":
                 currentResponse.content.append(line)
                 currentResponse.identifier = cls._getIdentifierSegmentO(line)
                 currentResponse.occurrences = cls._getOccurrences(line)
-                currentResponse.amountInCents = cls._getAmountSegmentO(line)
-                currentResponse.type = PaymentType.barCodePayment
+                currentResponse.amount_in_cents = cls._getAmountSegmentO(line)
+                currentResponse.type = payment_type.barCodePayment
             elif line[7] == "3" and line[13] == "Z":
                 currentResponse.content.append(line)
                 currentResponse.authentication = cls._getAuthentication(line)
