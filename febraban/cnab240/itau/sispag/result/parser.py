@@ -31,7 +31,7 @@ class PaymentFileHeader:
     def parseHeader(self, line):
 
         self.bankId = int(line[0:3].strip())
-        self.lot = int(line[157:163].strip())
+        self.lot = int(line[158:164].strip())
         self.identifier = int(line[18:32].strip())
         self.code = line[32:52].strip()
         self.branch_number = int(line[52:57].strip())
