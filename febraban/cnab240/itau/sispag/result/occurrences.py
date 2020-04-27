@@ -1,4 +1,4 @@
-occurrences: {
+occurrences = {
     "00": "Crédito ou Débito Efetivado - Este código indica que o pagamento foi confirmado",
     "01": "Insuficiência de Fundos - Débito Não Efetuado",
     "02": "Crédito ou Débito Cancelado pelo Pagador/Credor",
