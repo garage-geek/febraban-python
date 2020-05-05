@@ -1,10 +1,10 @@
-from .libs.cleanData import clean_data_return_only_number
+from .libs.cleanData import clean_data_return_only_number, clean_data_return_only_alphanumeric
 
 
 class User:
 
     def __init__(self, name, identifier, bank=None, address=None, file_id=None):
-        self.name = name
+        self.name = clean_data_return_only_alphanumeric(name)
         self.identifier = clean_data_return_only_number(identifier)
         self.bank = bank
         self.address = address
