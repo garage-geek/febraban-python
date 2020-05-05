@@ -1,5 +1,6 @@
 from ....characterType import numeric, alphaNumeric
 from ....row import Row
+from .libs.cleanData import clean_data_return_only_alphanumeric
 
 
 class SegmentA:
@@ -32,7 +33,7 @@ class SegmentA:
 
     def setReceiver(self, user):
         structs = [
-            (43, 73, 30, alphaNumeric, user.name),          # Nome FAvorecido
+            (43, 73, 30, alphaNumeric, clean_data_return_only_alphanumeric(user.name)),          # Nome FAvorecido
             (203, 217, 14, numeric, user.identifier),       # CPF/CNPJ Favorecido
         ]
         self.content = Row.setStructs(structs=structs, content=self.content)
