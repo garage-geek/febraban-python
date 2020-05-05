@@ -1,6 +1,6 @@
 from ....characterType import numeric, alphaNumeric
 from ....row import Row
-from .libs.cleanData import clean_data_return_only_alphanumeric
+from ....libs.cleanData import clean_data_return_only_alphanumeric
 
 
 class SegmentA:
