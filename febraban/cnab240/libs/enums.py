@@ -1,5 +1,5 @@
 class Banks:
-    ITAU = "341"
+    ITAU = 341
 
 
 class RegistrationType:
