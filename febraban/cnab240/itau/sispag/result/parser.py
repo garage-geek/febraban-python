@@ -1,4 +1,4 @@
-from ....libs.occurrences import itau_occurrences, febraban_occurrences
+from ....libs import occurrences
 from ....libs import enums
 
 
@@ -72,9 +72,9 @@ class PaymentResponse:
 
     def get_ocurrences_list(self):
         if self.bankId == enums.Banks.ITAU:
-            return itau_occurrences
+            return occurrences.itau_occurrences
 
-        return febraban_occurrences
+        return occurrences.febraban_occurrences
 
 
 class PaymentParser:
