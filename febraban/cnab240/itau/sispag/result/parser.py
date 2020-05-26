@@ -83,9 +83,9 @@ class PaymentParser:
         self.bankId = ''
 
     @classmethod
-    def parseFile(cls, file, bankId):
+    def parseFile(cls, file, bank_id):
         lines = file.readlines()
-        cls.bankId = bankId
+        cls.bankId = bank_id
         return cls.parseLines(lines)
 
     @classmethod
