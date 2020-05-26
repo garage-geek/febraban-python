@@ -105,7 +105,7 @@ class PaymentParser:
             if line[7] == "3" and line[13] in ["A", "J", "O"]:
                 if currentResponse is not None:
                     result.append(currentResponse)
-                currentResponse = PaymentResponse()
+                currentResponse = PaymentResponse(cls.bankId)
 
             if line[7] == "3" and line[13] == "A":
                 currentResponse.content.append(line)
