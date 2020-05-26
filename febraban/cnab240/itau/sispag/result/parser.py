@@ -1,8 +1,8 @@
-from .occurrences import occurrences
+from ....libs.occurrences import itau_occurrences, febraban_occurrences
+from ....libs import enums
 
 
 class PaymentResponseStatus:
-
     success = "success"
     failed = "failed"
     scheduled = "scheduled"
@@ -10,7 +10,6 @@ class PaymentResponseStatus:
 
 
 class payment_type:
-
     transfer = "transfer"
     chargePayment = "charge-payment"
     taxPayment = "tax-payment"
@@ -41,21 +40,23 @@ class PaymentFileHeader:
 
 class PaymentResponse:
 
-    def __init__(self, identifier=None, occurrences=None, content=None, authentication=None,
+    def __init__(self, bankId, identifier=None, occurrences=None, content=None, authentication=None,
                  amount_in_cents=None, payment_type=None):
+        self.bankId = bankId
         self.identifier = identifier
         self.occurrences = occurrences
         self.content = content or []
         self.authentication = authentication
         self.amount_in_cents = amount_in_cents
         self.type = payment_type
+        self.ocurrences_list = self.get_ocurrences_list()
 
     def occurrencesText(self):
-        return [occurrences[occurrenceId] for occurrenceId in self.occurrences]
+        return [self.ocurrences_list[occurrenceId] for occurrenceId in self.occurrences]
 
     def occurrencesTextAtIndex(self, index):
         occurrenceId = self.occurrences[index]
-        return occurrences[occurrenceId]
+        return self.ocurrences_list[occurrenceId]
 
     def status(self):
         if "00" in self.occurrences:
@@ -69,12 +70,22 @@ class PaymentResponse:
     def contentText(self, breakLine="\n"):
         return breakLine.join(self.content)
 
+    def get_ocurrences_list(self):
+        if self.bankId == enums.Banks.ITAU:
+            return itau_occurrences
+
+        return febraban_occurrences
+
 
 class PaymentParser:
 
+    def __init__(self):
+        self.bankId = ''
+
     @classmethod
-    def parseFile(cls, file):
+    def parseFile(cls, file, bankId):
         lines = file.readlines()
+        cls.bankId = bankId
         return cls.parseLines(lines)
 
     @classmethod
@@ -102,18 +113,21 @@ class PaymentParser:
                 currentResponse.occurrences = cls._getOccurrences(line)
                 currentResponse.amount_in_cents = cls._getAmountSegmentA(line)
                 currentResponse.type = payment_type.transfer
+
             elif line[7] == "3" and line[13] == "J":
                 currentResponse.content.append(line)
                 currentResponse.identifier = cls._getIdentifierSegmentJ(line)
                 currentResponse.occurrences = cls._getOccurrences(line)
                 currentResponse.amount_in_cents = cls._getAmountSegmentJ(line)
                 currentResponse.type = payment_type.chargePayment
+
             elif line[7] == "3" and line[13] == "O":
                 currentResponse.content.append(line)
                 currentResponse.identifier = cls._getIdentifierSegmentO(line)
                 currentResponse.occurrences = cls._getOccurrences(line)
                 currentResponse.amount_in_cents = cls._getAmountSegmentO(line)
                 currentResponse.type = payment_type.barCodePayment
+
             elif line[7] == "3" and line[13] == "Z":
                 currentResponse.content.append(line)
                 currentResponse.authentication = cls._getAuthentication(line)

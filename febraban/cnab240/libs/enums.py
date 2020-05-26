@@ -1,3 +1,6 @@
+class Banks:
+    ITAU = "341"
+
 
 class RegistrationType:
     PESSOA_FISICA = "1"
