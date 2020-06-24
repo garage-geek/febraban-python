@@ -1,4 +1,5 @@
 class Banks:
+    BRADESCO = 237
     ITAU = 341
 
 
