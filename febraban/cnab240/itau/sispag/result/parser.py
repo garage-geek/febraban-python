@@ -102,6 +102,7 @@ class PaymentParser:
         currentResponse = None
         
         for line in lines:
+            line = str(line)
             if line[7] in ["0", "1", "9"]:
                 continue
 
