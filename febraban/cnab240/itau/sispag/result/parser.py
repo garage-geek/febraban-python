@@ -84,6 +84,8 @@ class PaymentParser:
 
     @classmethod
     def parseFile(cls, bank_id, file_content=None, file=None):
+        # file_content = list of string
+
         cls.bankId = bank_id
         if file_content:
             lines = file_content
@@ -102,7 +104,6 @@ class PaymentParser:
         currentResponse = None
         
         for line in lines:
-            line = str(line)
             if line[7] in ["0", "1", "9"]:
                 continue
 
